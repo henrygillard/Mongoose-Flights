@@ -2,13 +2,13 @@
   box-sizing: border-box;
   font-family: Helvetica;
   color: #424748;
+  max-width: 480px;
 }
 
 body {
   border: solid;
   height: 100vmin;
   margin: 0;
-  max-width: 480px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -46,10 +46,19 @@ h1 {
   justify-content: center;
 }
 
-table {
+table, form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   background-color: #F1F3F6;
   align-items: center;
 }
+
+section {
+  display: flex ;
+  justify-content: center;
+  flex-direction: column;
+  
+}
+
+
