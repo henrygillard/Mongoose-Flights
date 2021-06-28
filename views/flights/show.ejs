@@ -1,48 +1,98 @@
 <%- include('../partials/header') %>
 
-<section id="show-page">
-  <br>
-  <div>Airport:</div>
-  <div><%= flight.airport  %></div>
-  <div>Airline:</div>
-  <div><%= flight.airline  %></div>
-  <div>Flight Number:</div>
-  <div><%= flight.flightNo  %></div>
-  <div>Departs:</div>
-  <div><%= flight.departs  %></div>
-  </section>
-  <form id="add-arrival-form" method="POST"
-  action="/flights/<%= flight._id%>/arrivals">
-  <label>Arrival Airport: </label>
-  <select name="airport">
-    <option value="AUS">AUS</option>
-    <option value="DFW">DFW</option>
-    <option value="DEN">DEN</option>
-    <option value="LAX">LAX</option>
-    <option value="SAN">SAN</option>
-  </select>
-  <label>Arrival:</label>
-  <input required type="date" name="arrival" id="arrival">
-  <input type="submit" value="Add Arrival">
-  </form>
-
-<% if (flight.destinations.length) { %>
-   <table>
+  <table class="table">
     <thead>
       <tr>
-        <th>Arrival Airport:</th>
-        <th>Arrival Date:</th>
+        <th scope="col">Airport:</th>
+        <th scope="col">Airline:</th>
+        <th scope="col">Flight Number:</th>
+        <th scope="col">Departs:</th>
       </tr>
     </thead>
     <tbody>
+      <tr>
+        
+        <td scope="row"><%= flight.airport %></td>
+        <td><%= flight.airline %></td>
+        <td><%= flight.flightNo %></td>
+        <td><%= flight.departs %></td>
+      </tr>
+    </tbody>
+      
+      
+
+ 
+  </table>
+  <form id="add-arrival-form" method="POST" action="/flights/<%= flight._id%>/arrivals">
+    <h3>Add Your Arrival Info: </h3>
+    <label>Arrival Airport: </label>
+    <select name="airport">
+      <option value="AUS">AUS</option>
+      <option value="DFW">DFW</option>
+      <option value="DEN">DEN</option>
+      <option value="LAX">LAX</option>
+      <option value="SAN">SAN</option>
+    </select>
+    <label>Arrival Time:</label>
+    <input required type="date" name="arrival" id="arrival">
+    <input type="submit" value="Add Arrival">
+  </form>
+
+  <% if (flight.destinations.length) { %>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Arrival Airport:</th>
+          <th>Arrival Time:</th>
+        </tr>
+      </thead>
+      <tbody>
         <% flight.destinations.forEach(function(a) { %>
           <tr>
-            <td><%= a.airport %></td>
-            <td><%= a.arrival %></td>
+            <td>
+              <%= a.airport %>
+            </td>
+            <td>
+              <%= a.arrival %>
+            </td>
           </tr>
-        <% }); %>
+          <% }); %>
       </tbody>
+    </table>
+    
+    
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Seat: </th>
+            <th>Price: </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <% tickets.forEach(function(t) { %>
+              <td><%= t.seat %></td>
+              <td><%= t.price %></td>
+              <% }); %>
+            </tr>
+          </tbody>
+        </table>
+    <% } %>
+        
+     
 
-<% } %>
-  
-<%- include('../partials/footer') %>
+    <form id="add-ticket-form" action="/flights/<%= flight._id %>/tickets" method="POST">
+      <h3>Add Your Ticket Info: </h3>
+      <label>Seat:</label>
+      <input type="text" name="seat" required pattern="[A-F][1-9]\d?">
+      <label>Price:</label>
+      <input type="number" name="price">
+      <input type="submit" value="Add Ticket">
+      
+    
+    </form>
+
+
+
+
+      <%- include('../partials/footer') %>

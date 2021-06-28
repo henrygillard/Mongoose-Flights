@@ -1,23 +1,24 @@
 <%- include("../partials/header") %>
 
 <h1>Flight List</h1>
-<table id="flight-list">
+<table id="flight-list" class="table table-hover">
   <thead>
     <tr>
-      <th>Airline</th>
-      <th>Airport</th>
-      <th>Flight Number</th>
-      <th>Departs</th>
+      <th scope="col">Airline</th>
+      <th scope="col">Airport</th>
+      <th scope="col">Flight #</th>
+      <th scope="col">Departs</th>
+      <th scope="col">More Info</th>
     </tr>
   </thead>
   <tbody>
     <% flights.forEach(function(f) { %>
       <tr>
-        <td><%= f.airline %></td>
-        <td><%= f.airport %></td>
-        <td><%= f.flightNo %></td>
-        <td><%= f.departs %></td>
-        <td><a href="/flights/<%= f._id %>">DETAILS</a></td>
+        <td scope="row"><%= f.airline %></td>
+        <td scope="row"><%= f.airport %></td>
+        <td scope="row"><%= f.flightNo %></td>
+        <td scope="row"><%= f.departs %></td>
+        <td scope="row"><a href="/flights/<%= f._id %>">DETAILS</a></td>
       </tr>
       <% }); %>
   </tbody>
